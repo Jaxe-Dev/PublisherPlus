@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+  <PublisherPlus.Title.Details>ワークショップに公開する－詳細</PublisherPlus.Title.Details>
+  <PublisherPlus.Title.Contents>ワークショップに公開する－内容</PublisherPlus.Title.Contents>
+  <PublisherPlus.Title.Finalize>ワークショップに公開する－最終決定</PublisherPlus.Title.Finalize>
+  <PublisherPlus.Button.Close>閉じる</PublisherPlus.Button.Close>
+  <PublisherPlus.Button.Back>戻る</PublisherPlus.Button.Back>
+  <PublisherPlus.Button.Default>デフォルト</PublisherPlus.Button.Default>
+  <PublisherPlus.Button.Save>保存</PublisherPlus.Button.Save>
+  <PublisherPlus.Button.Next>次へ</PublisherPlus.Button.Next>
+  <PublisherPlus.Button.Publish>公開</PublisherPlus.Button.Publish>
+  <PublisherPlus.FileId>ファイルID</PublisherPlus.FileId>
+  <PublisherPlus.Title>タイトル</PublisherPlus.Title>
+  <PublisherPlus.Description>Description</PublisherPlus.Description>
+  <PublisherPlus.DescriptionLocked> (更新用に、ここは編集できません)</PublisherPlus.DescriptionLocked>
+  <PublisherPlus.Tags>タグ</PublisherPlus.Tags>
+  <PublisherPlus.PreviewFile>プレビュー用画像</PublisherPlus.PreviewFile>
+  <PublisherPlus.PreviewNotFound> (このパスに見つかりません)</PublisherPlus.PreviewNotFound>
+  <PublisherPlus.ContentDirectory>保存先</PublisherPlus.ContentDirectory>
+  <PublisherPlus.FinalInformation>アップロード準備：{0}\n\nファイルID：{1}\n\n\nあなたがこのModの著作者である事と、公開ボタンを押す前にすべての情報が正しいことを確認してください。</PublisherPlus.FinalInformation>
+  <PublisherPlus.NewFileId>(新)</PublisherPlus.NewFileId>
+
+</LanguageData>
