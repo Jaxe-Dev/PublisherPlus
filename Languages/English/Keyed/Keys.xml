@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<LanguageData>
+  <PublisherPlus.Title.Details>Publish to Steam Workshop - Main Details</PublisherPlus.Title.Details>
+  <PublisherPlus.Title.Contents>Publish to Steam Workshop - Contents</PublisherPlus.Title.Contents>
+  <PublisherPlus.Title.Finalize>Publish to Steam Workshop - Finalize</PublisherPlus.Title.Finalize>
+  <PublisherPlus.Button.Close>Close</PublisherPlus.Button.Close>
+  <PublisherPlus.Button.Back>Back</PublisherPlus.Button.Back>
+  <PublisherPlus.Button.Default>Default</PublisherPlus.Button.Default>
+  <PublisherPlus.Button.Save>Save</PublisherPlus.Button.Save>
+  <PublisherPlus.Button.Next>Next</PublisherPlus.Button.Next>
+  <PublisherPlus.Button.Publish>Publish</PublisherPlus.Button.Publish>
+  <PublisherPlus.FileId>File ID</PublisherPlus.FileId>
+  <PublisherPlus.Title>Title</PublisherPlus.Title>
+  <PublisherPlus.Description>Description</PublisherPlus.Description>
+  <PublisherPlus.DescriptionLocked> (not editable here for updates)</PublisherPlus.DescriptionLocked>
+  <PublisherPlus.Tags>Tags</PublisherPlus.Tags>
+  <PublisherPlus.PreviewFile>Workshop Preview File</PublisherPlus.PreviewFile>
+  <PublisherPlus.PreviewNotFound> (not found at this path)</PublisherPlus.PreviewNotFound>
+  <PublisherPlus.ContentDirectory>Content Folder</PublisherPlus.ContentDirectory>
+  <PublisherPlus.FinalInformation>Ready to upload: {0}\n\nSteam File ID: {1}\n\n\nBe sure that you are the author of this work and that all information is correct before pressing the Publish button.</PublisherPlus.FinalInformation>
+  <PublisherPlus.NewFileId>(New)</PublisherPlus.NewFileId>
+</LanguageData>
