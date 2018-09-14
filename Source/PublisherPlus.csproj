@@ -58,6 +58,7 @@
     <Compile Include="Data\WorkshopPackage.cs" />
     <Compile Include="Interface\Dialog_Publish.cs" />
     <Compile Include="Interface\ListingPlus.cs" />
+    <Compile Include="Interface\WidgetsPlus.cs" />
     <Compile Include="Patch\Access.cs" />
     <Compile Include="Patch\Extensions.cs" />
     <Compile Include="Patch\Verse_Dialog_MessageBox_CreateConfirmation.cs" />

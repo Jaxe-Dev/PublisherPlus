@@ -43,8 +43,8 @@ namespace PublisherPlus.Data
         public bool PreviewExists => _previewFile.Exists;
         public bool IsNewCreation => _id == PublishedFileId_t.Invalid;
 
-        public DirectoryInfo Source { get; private set; }
-        public IEnumerable<FileSystemInfo> Content => _items.OrderByDescending(item => item.Value).Select(item => item.Key);
+        public DirectoryInfo SourceDirectory { get; private set; }
+        public IEnumerable<FileSystemInfo> AllContent => _items.OrderByDescending(item => item.Value).Select(item => item.Key);
 
         private readonly DirectoryInfo _uploadDirectory;
 
@@ -58,7 +58,7 @@ namespace PublisherPlus.Data
             GetAllContent();
             GetConfig();
 
-            _uploadDirectory = TempDirectory.CreateSubdirectory(Source.Name);
+            _uploadDirectory = TempDirectory.CreateSubdirectory(SourceDirectory.Name);
             if (_uploadDirectory.Exists) { _uploadDirectory.Delete(true); }
             _uploadDirectory.Create();
         }
@@ -69,7 +69,7 @@ namespace PublisherPlus.Data
             Description = _hook.Description;
             Tags = _hook.Tags?.ToList() ?? new List<string>();
             Preview = _hook.PreviewImagePath;
-            Source = new DirectoryInfo(_hook.Directory.FullName);
+            SourceDirectory = new DirectoryInfo(_hook.Directory.FullName);
         }
 
         public bool IsIncluded(FileSystemInfo item) => !_items.ContainsKey(item) || _items[item];
@@ -82,14 +82,14 @@ namespace PublisherPlus.Data
             }
         }
 
-        public string GetRelativePath(FileSystemInfo item) => item.FullName.Substring(Source.FullName.Length + 1);
+        public string GetRelativePath(FileSystemInfo item) => item.FullName.Substring(SourceDirectory.FullName.Length + 1);
 
         private void GetAllContent()
         {
             var list = new List<FileSystemInfo>();
 
-            list.AddRange(Source.GetFiles("*.*", SearchOption.AllDirectories));
-            list.AddRange(Source.GetDirectories("*.*", SearchOption.AllDirectories));
+            list.AddRange(SourceDirectory.GetFiles("*.*", SearchOption.AllDirectories));
+            list.AddRange(SourceDirectory.GetDirectories("*.*", SearchOption.AllDirectories));
 
             _items.Clear();
 
@@ -102,7 +102,7 @@ namespace PublisherPlus.Data
 
         private void GetConfig()
         {
-            var configFile = Path.Combine(Source.FullName, ConfigFileName);
+            var configFile = Path.Combine(SourceDirectory.FullName, ConfigFileName);
             if (!File.Exists(configFile)) { return; }
 
             var xml = XDocument.Load(configFile).Root;
@@ -124,16 +124,30 @@ namespace PublisherPlus.Data
             {
                 if (path.NullOrEmpty()) { continue; }
 
-                var exclude = Path.Combine(Source.FullName, path);
+                var exclude = Path.Combine(SourceDirectory.FullName, path);
                 foreach (var item in _items.Keys.ToArray().Where(item => item.FullName.StartsWith(exclude, StringComparison.OrdinalIgnoreCase))) { _items[item] = false; }
             }
         }
 
+        public bool HasContent() => _items.Any(item => item.Value);
+
         private IEnumerable<FileSystemInfo> GetExcluded() => _items.Where(item => !item.Value).Select(item => item.Key);
+
+        private IEnumerable<string> GetExcludedPaths()
+        {
+            var list = new List<string>();
+            foreach (var path in GetExcluded().Select(item => item.FullName).OrderBy(item => item))
+            {
+                if(list.Any(item => path.StartsWith(item))) { continue; }
+                list.Add(path);
+            }
+
+            return list;
+        }
 
         public void SaveConfig()
         {
-            var configFile = Path.Combine(Source.FullName, ConfigFileName);
+            var configFile = Path.Combine(SourceDirectory.FullName, ConfigFileName);
 
             var xml = new XDocument();
             var root = new XElement("Configuration");
@@ -141,7 +155,7 @@ namespace PublisherPlus.Data
             if (Title != _hook.Name) { root.Add(new XElement("Title", Title)); }
             if (Mod.ExperimentalMode && !Tags.SequenceEqual(_hook.Tags)) { root.Add(new XElement("Tags", from tag in Tags select new XElement("tag", tag))); }
             if ((Preview != _hook.PreviewImagePath) && PreviewExists) { root.Add(new XElement("Preview", Preview)); }
-            root.Add(new XElement("Excluded", from item in GetExcluded() select new XElement("exclude", item)));
+            root.Add(new XElement("Excluded", from item in GetExcludedPaths() select new XElement("exclude", item)));
 
             xml.Save(configFile);
         }
@@ -208,7 +222,7 @@ namespace PublisherPlus.Data
         {
             _id = pfid;
 
-            var file = new FileInfo(Path.Combine(Source.FullName, PublishedFileIdFilePath));
+            var file = new FileInfo(Path.Combine(SourceDirectory.FullName, PublishedFileIdFilePath));
             _hook.PublishedFileId = pfid;
 
             if (_items.Keys.FirstOrDefault(item => item.FullName == file.FullName) != null) { return; }

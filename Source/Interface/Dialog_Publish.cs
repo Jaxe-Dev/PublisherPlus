@@ -85,24 +85,24 @@ namespace PublisherPlus.Interface
             var buttonRect = new Rect(inRect.x, contentRect.yMax + Padding, inRect.width, ButtonHeight);
             var grid = new GridLayout(buttonRect, 6);
 
-            if (Widgets.ButtonText(grid.GetCellRect(0, 0, 2), _page == 0 ? Lang.Get("Button.Close") : Lang.Get("Button.Back"))) { PreviousPage(); }
-            if (Widgets.ButtonText(grid.GetCellRect(2, 0), Lang.Get("Button.Default"))) { ResetConfig(); }
-            if (Widgets.ButtonText(grid.GetCellRect(3, 0), Lang.Get("Button.Save"))) { SaveConfig(); }
-            if (Widgets.ButtonText(grid.GetCellRect(4, 0, 2), _page == 2 ? Lang.Get("Button.Publish") : Lang.Get("Button.Next"))) { NextPage(); }
+            if (WidgetsPlus.ButtonText(grid.GetCellRect(0, 0, 2), _page == 0 ? Lang.Get("Button.Close") : Lang.Get("Button.Back"))) { PreviousPage(); }
+            if (WidgetsPlus.ButtonText(grid.GetCellRect(2, 0), Lang.Get("Button.Default"))) { ResetConfig(); }
+            if (WidgetsPlus.ButtonText(grid.GetCellRect(3, 0), Lang.Get("Button.Save"))) { SaveConfig(); }
+            if (WidgetsPlus.ButtonText(grid.GetCellRect(4, 0, 2), _page == 2 ? Lang.Get("Button.Publish") : Lang.Get("Button.Next"), _pack.HasContent())) { NextPage(); }
         }
 
         private void DoDetails(Rect rect)
         {
-            var l = new Listing_StandardPlus();
-            l.Begin(rect);
-            l.Gap();
+            var listing = new Listing_StandardPlus();
+            listing.Begin(rect);
+            listing.Gap();
 
-            l.Label(Lang.Get("FileId").Bold());
-            l.Label(_pack.Id.Italic());
-            l.GapLine();
+            listing.Label(Lang.Get("FileId").Bold());
+            listing.Label(_pack.Id.Italic());
+            listing.GapLine();
 
-            l.Label(Lang.Get("Title").Bold());
-            _pack.Title = l.TextEntry(_pack.Title);
+            listing.Label(Lang.Get("Title").Bold());
+            _pack.Title = listing.TextEntry(_pack.Title);
             const string experimentalMode = "*#exp#"; // Experimental Mode: Can load tags in xml
             if (_pack.Title.EndsWith(experimentalMode))
             {
@@ -110,21 +110,21 @@ namespace PublisherPlus.Interface
                 Mod.ExperimentalMode = true;
                 Mod.Warning("Experimental Mode activated");
             }
-            l.GapLine();
+            listing.GapLine();
 
-            l.Label(Lang.Get("Description").Bold() + (_pack.IsNewCreation ? null : Lang.Get("DescriptionLocked")));
-            var description = l.TextEntry(_pack.Description, 6);
+            listing.Label(Lang.Get("Description").Bold() + (_pack.IsNewCreation ? null : Lang.Get("DescriptionLocked")));
+            var description = listing.TextEntry(_pack.Description, 6);
             if (_pack.IsNewCreation) { _pack.Description = description; }
-            l.GapLine();
+            listing.GapLine();
 
-            l.Label(Lang.Get("Tags").Bold());
-            l.Label(_pack.Tags.ToCommaList().Italic());
-            l.GapLine();
+            listing.Label(Lang.Get("Tags").Bold());
+            listing.Label(_pack.Tags.ToCommaList().Italic());
+            listing.GapLine();
 
-            l.Label(Lang.Get("PreviewFile").Bold() + (_pack.PreviewExists ? null : Lang.Get("PreviewNotFound").Italic()));
-            _pack.Preview = l.TextEntry(_pack.Preview);
+            listing.Label(Lang.Get("PreviewFile").Bold() + (_pack.PreviewExists ? null : Lang.Get("PreviewNotFound").Italic()));
+            _pack.Preview = listing.TextEntry(_pack.Preview);
 
-            l.End();
+            listing.End();
         }
 
         private void DoContents(Rect rect)
@@ -133,18 +133,18 @@ namespace PublisherPlus.Interface
             l.Begin(rect);
             l.Gap();
             l.Label(Lang.Get("ContentDirectory").Bold());
-            l.Label(_pack.Source.FullName.Italic());
+            l.Label(_pack.SourceDirectory.FullName.Italic());
             l.GapLine();
             l.End();
 
             var filterList = new Listing_StandardPlus();
             var filterRect = new Rect(rect.x, rect.y + l.CurHeight, rect.width, rect.height - l.CurHeight);
-            var filterViewRect = new Rect(0f, 0f, rect.width - ScrollBarWidth, _pack.Content.Count() * (Text.LineHeight + filterList.verticalSpacing));
+            var filterViewRect = new Rect(0f, 0f, rect.width - ScrollBarWidth, _pack.AllContent.Count() * (Text.LineHeight + filterList.verticalSpacing));
 
             Widgets.BeginScrollView(filterRect, ref _scroll, filterViewRect);
             filterList.Begin(filterViewRect);
 
-            foreach (var item in _pack.Content)
+            foreach (var item in _pack.AllContent)
             {
                 var path = _pack.GetRelativePath(item);
                 var isDirectory = item is DirectoryInfo;
