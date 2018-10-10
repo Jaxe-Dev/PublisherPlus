@@ -3,6 +3,6 @@
 <ModMetaData>
   <name>PublisherPlus</name>
   <author>Jaxe</author>
-  <targetVersion>0.19.0</targetVersion>
+  <targetVersion>1.0.0</targetVersion>
   <description>Provides extended options for publishing mods to the Steam Workshop.\n\nThis 'mod' has no effect on gameplay and should only be used by mod developers who intend to upload to the Steam platform.</description>
 </ModMetaData>

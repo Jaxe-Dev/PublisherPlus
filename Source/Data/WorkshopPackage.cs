@@ -40,7 +40,7 @@ namespace PublisherPlus.Data
                 _previewFile = new FileInfo(value);
             }
         }
-        public bool PreviewExists => _previewFile.Exists;
+        public bool PreviewExists => _previewFile.ExistsNow();
         public bool IsNewCreation => _id == PublishedFileId_t.Invalid;
 
         public DirectoryInfo SourceDirectory { get; private set; }
@@ -59,7 +59,7 @@ namespace PublisherPlus.Data
             GetConfig();
 
             _uploadDirectory = TempDirectory.CreateSubdirectory(SourceDirectory.Name);
-            if (_uploadDirectory.Exists) { _uploadDirectory.Delete(true); }
+            if (_uploadDirectory.ExistsNow()) { _uploadDirectory.Delete(true); }
             _uploadDirectory.Create();
         }
 
@@ -106,18 +106,20 @@ namespace PublisherPlus.Data
             if (!File.Exists(configFile)) { return; }
 
             var xml = XDocument.Load(configFile).Root;
+            if (xml == null) { return; }
+
             var ns = xml.Name.Namespace;
 
             var title = xml.Element(ns + "Title")?.Value;
             if (!title.NullOrEmpty()) { Title = title; }
 
-            var tags = xml.Element(ns + "Tags")?.Elements()?.Select(element => element.Value);
+            var tags = xml.Element(ns + "Tags")?.Elements().Select(element => element.Value).ToArray();
             if (Mod.ExperimentalMode && (tags?.Any() ?? false)) { Tags = new List<string>(tags); }
 
             var preview = xml.Element(ns + "Preview")?.Value;
             if (!preview.NullOrEmpty()) { Preview = preview; }
 
-            var excluded = xml.Element(ns + "Excluded")?.Elements()?.Select(element => element.Value);
+            var excluded = xml.Element(ns + "Excluded")?.Elements().Select(element => element.Value);
             if (excluded == null) { return; }
 
             foreach (var path in excluded)
@@ -138,7 +140,7 @@ namespace PublisherPlus.Data
             var list = new List<string>();
             foreach (var path in GetExcluded().Select(item => item.FullName).OrderBy(item => item))
             {
-                if(list.Any(item => path.StartsWith(item))) { continue; }
+                if (list.Any(item => path.StartsWith(item))) { continue; }
                 list.Add(path);
             }
 
@@ -180,6 +182,7 @@ namespace PublisherPlus.Data
                 try
                 {
                     var destination = new FileInfo(path);
+                    if (destination.Directory == null) { throw new Mod.Exception("Destination directory is null"); }
                     destination.Directory.Create();
                     original.CopyTo(destination.FullName);
                 }

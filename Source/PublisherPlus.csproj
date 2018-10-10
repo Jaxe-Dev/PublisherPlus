@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mod.cs" />
+    <Compile Include="Compatibility\ModManager.cs" />
     <Compile Include="Data\Lang.cs" />
     <Compile Include="Data\WorkshopPackage.cs" />
     <Compile Include="Interface\Dialog_Publish.cs" />
@@ -72,6 +73,9 @@
   <ItemGroup>
     <Content Include="..\About\About.xml">
       <Link>-\About\About.xml</Link>
+    </Content>
+    <Content Include="..\About\Manifest.xml">
+      <Link>-\About\Manifest.xml</Link>
     </Content>
     <Content Include="..\Languages\English\Keyed\Keys.xml">
       <Link>-\Languages\English\Keyed\Keys.xml</Link>

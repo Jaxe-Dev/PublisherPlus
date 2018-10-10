@@ -1,6 +1,5 @@
 ﻿using Harmony;
 using PublisherPlus.Interface;
-using RimWorld;
 using Verse;
 
 namespace PublisherPlus.Patch
@@ -12,10 +11,9 @@ namespace PublisherPlus.Patch
         {
             if (text != "ConfirmSteamWorkshopUpload".Translate()) { return true; }
 
-            var page = Find.WindowStack.WindowOfType<Page_ModsConfig>();
-            if (page?.selectedMod == null) { return true; }
-
-            __result = new Dialog_Publish(page.selectedMod.GetWorkshopItemHook());
+            var selectedMod = Access.GetSelectedMod();
+            if (selectedMod == null) { return false; }
+            __result = new Dialog_Publish(selectedMod.GetWorkshopItemHook());
 
             return false;
         }
