@@ -10,6 +10,8 @@ using Verse.Steam;
 
 namespace PublisherPlus.Data
 {
+    using Version = System.Version;
+
     internal class WorkshopPackage : WorkshopUploadable
     {
         private const string TempFolderName = "PublisherPlus\\Temp";
@@ -28,6 +30,7 @@ namespace PublisherPlus.Data
 
         public string Title { get; set; }
         public string Description { get; set; }
+        public IEnumerable<Version> SupportedVersions { get; set; }
         public List<string> Tags { get; private set; }
 
         private FileInfo _previewFile;
@@ -68,6 +71,7 @@ namespace PublisherPlus.Data
             Title = _hook.Name;
             Description = _hook.Description;
             Tags = _hook.Tags?.ToList() ?? new List<string>();
+            SupportedVersions = this._hook.SupportedVersions;
             Preview = _hook.PreviewImagePath;
             SourceDirectory = new DirectoryInfo(_hook.Directory.FullName);
         }
@@ -238,5 +242,6 @@ namespace PublisherPlus.Data
         public IList<string> GetWorkshopTags() => Tags;
         public DirectoryInfo GetWorkshopUploadDirectory() => _uploadDirectory;
         public WorkshopItemHook GetWorkshopItemHook() => new WorkshopItemHook(this);
+
     }
 }
