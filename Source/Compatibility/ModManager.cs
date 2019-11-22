@@ -10,6 +10,7 @@ namespace PublisherPlus.Compatibility
     {
         private static readonly Assembly Assembly = LoadedModManager.RunningModsListForReading.FirstOrDefault(mod => mod.Name == "Mod Manager")?.assemblies.loadedAssemblies.FirstOrDefault(assembly => assembly.GetName().Name == "ModManager");
         public static readonly bool Loaded = Assembly != null;
+
         public static ModMetaData GetSelectedMod()
         {
             var pageType = Assembly.GetType("ModManager.Page_BetterModConfig");

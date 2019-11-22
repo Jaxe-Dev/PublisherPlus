@@ -1,4 +1,4 @@
-﻿using Harmony;
+using Harmony;
 using Verse;
 
 namespace PublisherPlus
@@ -8,7 +8,7 @@ namespace PublisherPlus
     {
         public const string Id = "PublisherPlus";
         public const string Name = Id;
-        public const string Version = "1.0.3";
+        public const string Version = "1.1";
 
         public static bool ExperimentalMode { get; set; }
 
@@ -22,8 +22,7 @@ namespace PublisherPlus
 
         public class Exception : System.Exception
         {
-            public Exception(string message) : base(PrefixMessage(message))
-            { }
+            public Exception(string message) : base(PrefixMessage(message)) { }
         }
     }
 }

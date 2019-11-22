@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D3159CFD-253F-4FA0-8846-1B44B1C6949B}</ProjectGuid>
+    <ProjectGuid>{B5FA2312-C6FB-4782-A8E0-6FF2B74F4C34}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PublisherPlus</RootNamespace>
@@ -81,6 +81,5 @@
       <Link>-\Languages\English\Keyed\Keys.xml</Link>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

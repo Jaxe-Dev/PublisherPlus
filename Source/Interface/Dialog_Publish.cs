@@ -31,6 +31,7 @@ namespace PublisherPlus.Interface
             absorbInputAroundWindow = true;
             closeOnClickedOutside = false;
         }
+
         private string GetTitle()
         {
             if (_page == 0) { return Lang.Get("Title.Details"); }
@@ -169,6 +170,7 @@ namespace PublisherPlus.Interface
 
         private void SaveConfig() => _pack.SaveConfig();
         private void ResetConfig() => _pack.ResetConfig();
+
         private void Package()
         {
             _pack.Upload();

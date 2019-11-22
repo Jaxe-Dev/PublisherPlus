@@ -7,6 +7,7 @@ using PublisherPlus.Patch;
 using Steamworks;
 using Verse;
 using Verse.Steam;
+using Version = System.Version;
 
 namespace PublisherPlus.Data
 {
@@ -29,6 +30,7 @@ namespace PublisherPlus.Data
         public string Title { get; set; }
         public string Description { get; set; }
         public List<string> Tags { get; private set; }
+        public IEnumerable<Version> SupportedVersions { get; private set; }
 
         private FileInfo _previewFile;
         public string Preview
@@ -68,11 +70,13 @@ namespace PublisherPlus.Data
             Title = _hook.Name;
             Description = _hook.Description;
             Tags = _hook.Tags?.ToList() ?? new List<string>();
+            SupportedVersions = _hook.SupportedVersions;
             Preview = _hook.PreviewImagePath;
             SourceDirectory = new DirectoryInfo(_hook.Directory.FullName);
         }
 
         public bool IsIncluded(FileSystemInfo item) => !_items.ContainsKey(item) || _items[item];
+
         public void SetIncluded(FileSystemInfo item, bool value)
         {
             _items[item] = value;
@@ -193,6 +197,7 @@ namespace PublisherPlus.Data
                 }
             }
         }
+
         public void Upload()
         {
             if (_current == this)
@@ -218,9 +223,11 @@ namespace PublisherPlus.Data
         }
 
         public bool CanToUploadToWorkshop() => true;
-        public void PrepareForWorkshopUpload()
-        { }
+
+        public void PrepareForWorkshopUpload() { }
+
         public PublishedFileId_t GetPublishedFileId() => _id;
+
         public void SetPublishedFileId(PublishedFileId_t pfid)
         {
             _id = pfid;
@@ -232,6 +239,7 @@ namespace PublisherPlus.Data
 
             _items.Add(file, true);
         }
+
         public string GetWorkshopName() => Title;
         public string GetWorkshopDescription() => Description;
         public string GetWorkshopPreviewImagePath() => Preview;
