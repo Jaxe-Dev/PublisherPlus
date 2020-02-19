@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ModMetaData>
+  <packageId>Jaxe.PublisherPlus</packageId>
   <name>PublisherPlus</name>
   <author>Jaxe</author>
   <supportedVersions>
     <li>1.0</li>
+    <li>1.1</li>
   </supportedVersions>
   <description>Provides extended options for publishing mods to the Steam Workshop.\n\nThis 'mod' has no effect on gameplay and should only be used by mod developers who intend to upload to the Steam platform.</description>
 </ModMetaData>
