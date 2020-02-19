@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+﻿using Harmony;
 using PublisherPlus.Interface;
 using Verse;
 
@@ -7,7 +7,7 @@ namespace PublisherPlus.Patch
     [HarmonyPatch(typeof(Dialog_MessageBox), "CreateConfirmation")]
     internal static class Verse_Dialog_MessageBox_CreateConfirmation
     {
-        private static bool Prefix(ref Window __result, TaggedString text)
+        private static bool Prefix(ref Window __result, string text)
         {
             if (text != "ConfirmSteamWorkshopUpload".Translate()) { return true; }
 

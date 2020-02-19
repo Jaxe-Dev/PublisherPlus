@@ -1,4 +1,4 @@
-using HarmonyLib;
+using Harmony;
 using Verse;
 
 namespace PublisherPlus
@@ -12,7 +12,7 @@ namespace PublisherPlus
 
         public static bool ExperimentalMode { get; set; }
 
-        static Mod() => new Harmony(Id).PatchAll();
+        static Mod() => HarmonyInstance.Create(Id).PatchAll();
 
         public static void Log(string message) => Verse.Log.Message(PrefixMessage(message));
         public static void Warning(string message) => Verse.Log.Warning(PrefixMessage(message));
