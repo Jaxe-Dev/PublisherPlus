@@ -118,7 +118,7 @@ namespace PublisherPlus.Data
             if (!title.NullOrEmpty()) { Title = title; }
 
             var tags = xml.Element(ns + "Tags")?.Elements().Select(element => element.Value).ToArray();
-            if (Mod.ExperimentalMode && (tags?.Any() ?? false)) { Tags = new List<string>(tags); }
+            if (Mod.ExperimentalMode && (tags != null) && (tags.Length > 0)) { Tags = new List<string>(tags); }
 
             var preview = xml.Element(ns + "Preview")?.Value;
             if (!preview.NullOrEmpty()) { Preview = preview; }
