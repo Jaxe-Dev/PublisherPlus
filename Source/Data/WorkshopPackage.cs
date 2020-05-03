@@ -93,9 +93,13 @@ namespace PublisherPlus.Data
             var list = new List<FileSystemInfo>();
 
             list.AddRange(SourceDirectory.GetFiles("*.*", SearchOption.AllDirectories));
-            list.AddRange(SourceDirectory.GetDirectories("*.*", SearchOption.AllDirectories));
-            list.RemoveAll(l => l.FullName.Contains(".vs") || l.FullName.Contains("Source\\") || l.FullName.Contains(".sln") || l.FullName.Contains(".git"));
-            
+            list.AddRange(SourceDirectory.GetDirectories("*.*", SearchOption.AllDirectories).Where(d => d.Name != "Source"));
+            list.RemoveAll(l => 
+                l.FullName.Contains(".vs") 
+                || l.FullName.Contains("Source\\") 
+                || l.FullName.Contains(".sln") 
+                || l.FullName.Contains(".git")
+            );
             _items.Clear();
 
             foreach (var item in list.OrderBy(item => item.FullName).ToArray())
