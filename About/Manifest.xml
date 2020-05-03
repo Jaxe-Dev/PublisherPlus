@@ -3,7 +3,7 @@
     <identifier>PublishPlusForked</identifier>
     <version>1.3.0.0</version>
     <dependencies>
-        <li>>brrainz.harmony</li>
+        <li>brrainz.harmony</li>
     </dependencies>
     <loadAfter>
         <li>ModManager</li>
