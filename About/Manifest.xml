@@ -9,6 +9,6 @@
         <li>ModManager</li>
     </loadAfter>
     <showCrossPromotions>false</showCrossPromotions>
-    <manifestUri>https://github.com/Jvella94/PublisherPlus/master/About/Manifest.xml</manifestUri>
+    <manifestUri>https://raw.githubusercontent.com/Jvella94/PublisherPlus/master/About/Manifest.xml</manifestUri>
     <downloadUri>https://github.com/Jvella94/PublisherPlus/releases/latest</downloadUri>
 </Manifest>
