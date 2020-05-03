@@ -13,18 +13,18 @@ namespace PublisherPlus.Compatibility
 
         public static ModMetaData GetSelectedMod()
         {
+            //Thanks to Orion for figuring this out.
             var pageType = Assembly.GetType("ModManager.Page_BetterModConfig");
-            var modButtonInstalledType = Assembly.GetType("ModManager.ModButton_Installed");
-            if ((pageType == null) || (modButtonInstalledType == null)) { return null; }
+            if (pageType == null) { return null; }
 
-            var selectedModButton = Traverse.Create(pageType).Field("_instance")?.Field("_selected")?.GetValue();
+            var page = Traverse.Create(pageType).Property("Instance")?.GetValue();
+            var selectedModButton = Traverse.Create(page).Property("Selected")?.GetValue();
             if (selectedModButton == null) { return null; }
 
-            var modButtonInstalled = Convert.ChangeType(selectedModButton, modButtonInstalledType);
-            if (modButtonInstalled == null) { return null; }
-
-            var selected = (ModMetaData) Traverse.Create(modButtonInstalled).Field("_selected").GetValue();
-            return selected;
+            var buttonManager = Assembly.GetType("ModManager.ModButtonManager");
+            var method = AccessTools.Method(buttonManager, "AttributesFor", new[] { Assembly.GetType("ModManager.ModButton") });
+            var value = method.Invoke(null, new[] { selectedModButton });
+            return Traverse.Create(value).Property<ModMetaData>("Mod").Value;
         }
     }
 }
