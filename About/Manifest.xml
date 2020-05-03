@@ -6,7 +6,7 @@
         <li>brrainz.harmony</li>
     </dependencies>
     <loadAfter>
-        <li>ModManager</li>
+        <li>brrainz.harmony</li>
     </loadAfter>
     <showCrossPromotions>false</showCrossPromotions>
     <manifestUri>https://raw.githubusercontent.com/Jvella94/PublisherPlus/master/About/Manifest.xml</manifestUri>

@@ -15,9 +15,11 @@
         <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
       </li>
   </modDependencies>
-  <description>Provides extended options for publishing mods to the Steam Workshop.\n\nThis 'mod' has no effect on gameplay and should only be used by mod developers who intend to upload to the Steam platform.</description>
+  <description>
+    Provides extended options for publishing mods to the Steam Workshop.\n\n
+    This 'mod' has no effect on gameplay and should only be used by mod developers who intend to upload to the Steam platform.
+  </description>
   <loadAfter>
     <li>brrainz.harmony</li>
-    <li>ModManager</li>
   </loadAfter>
 </ModMetaData>
