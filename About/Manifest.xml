@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Manifest>
+    <identifier>PublishPlusForked</identifier>
+    <version>1.3.0.0</version>
+    <dependencies>
+        <li>>brrainz.harmony</li>
+    </dependencies>
+    <loadAfter>
+        <li>ModManager</li>
+    </loadAfter>
+    <showCrossPromotions>false</showCrossPromotions>
+    <manifestUri>https://github.com/Jvella94/PublisherPlus/master/About/Manifest.xml</manifestUri>
+    <downloadUri>https://github.com/Jvella94/PublisherPlus/releases/latest</downloadUri>
+</Manifest>

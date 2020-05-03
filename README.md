@@ -1,5 +1,5 @@
-# PublisherPlus
-![](https://img.shields.io/badge/Mod_Version-1.2-blue.svg)
+# PublisherPlus Forked
+![](https://img.shields.io/badge/Mod_Version-1.3-blue.svg)
 ![](https://img.shields.io/badge/Built_for_RimWorld-1.1-blue.svg)
 ![](https://img.shields.io/badge/Powered_by_Harmony-2.0-blue.svg)
 

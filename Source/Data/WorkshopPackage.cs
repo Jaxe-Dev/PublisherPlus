@@ -99,6 +99,7 @@ namespace PublisherPlus.Data
                 || l.FullName.Contains("Source\\") 
                 || l.FullName.Contains(".sln") 
                 || l.FullName.Contains(".git")
+                || l.FullName.Contains("Readme.md")
             );
             _items.Clear();
 
