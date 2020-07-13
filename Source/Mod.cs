@@ -1,5 +1,6 @@
 using HarmonyLib;
 using Verse;
+using Verse.Steam;
 
 namespace PublisherPlus
 {
@@ -10,6 +11,8 @@ namespace PublisherPlus
         public const string Name = Id;
         public const string Version = "1.1";
 
+        public static WorkshopUploadable currentMod { get; set; }
+
         public static bool ExperimentalMode { get; set; }
 
         static Mod() => new Harmony(Id).PatchAll();
@@ -19,6 +22,7 @@ namespace PublisherPlus
         public static void Error(string message) => Verse.Log.Error(PrefixMessage(message));
 
         private static string PrefixMessage(string message) => $"[{Name} v{Version}] {message}";
+        
 
         public class Exception : System.Exception
         {

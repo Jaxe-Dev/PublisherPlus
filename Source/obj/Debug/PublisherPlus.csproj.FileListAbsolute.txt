@@ -1,0 +1,4 @@
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\PublisherPlus\Assemblies\PublisherPlus.dll
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\PublisherPlus\Source\obj\Debug\PublisherPlus.csprojAssemblyReference.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\PublisherPlus\Source\obj\Debug\PublisherPlus.csproj.CoreCompileInputs.cache
+E:\SteamLibrary\steamapps\common\RimWorld\Mods\PublisherPlus\Source\obj\Debug\PublisherPlus.dll
