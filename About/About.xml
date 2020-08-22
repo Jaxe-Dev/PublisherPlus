@@ -3,9 +3,20 @@
   <packageId>Jaxe.PublisherPlus</packageId>
   <name>PublisherPlus</name>
   <author>Jaxe</author>
-  <supportedVersions>
-    <li>1.0</li>
-    <li>1.1</li>
-  </supportedVersions>
   <description>Provides extended options for publishing mods to the Steam Workshop.\n\nThis 'mod' has no effect on gameplay and should only be used by mod developers who intend to upload to the Steam platform.</description>
+  <supportedVersions>
+    <li>1.1</li>
+    <li>1.2</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+  </loadAfter>
 </ModMetaData>
