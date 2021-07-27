@@ -73,7 +73,7 @@
     <Compile Include="Interface\WidgetsPlus.cs" />
     <Compile Include="Patch\Access.cs" />
     <Compile Include="Patch\Extensions.cs" />
-    <Compile Include="Patch\Verse_Dialog_MessageBox_CreateConfirmation.cs" />
+    <Compile Include="Patch\RimWorld_Dialog_ConfirmModUpload_Ctor.cs" />
     <Compile Include="Patch\Verse_Steam_Workshop_OnItemSubmitted.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +88,9 @@
     </Content>
     <Content Include="..\Languages\English\Keyed\Keys.xml">
       <Link>-\Languages\English\Keyed\Keys.xml</Link>
+    </Content>
+    <Content Include="..\loadFolders.xml">
+      <Link>-\loadFolders.xml</Link>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
