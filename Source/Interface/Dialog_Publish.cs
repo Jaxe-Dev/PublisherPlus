@@ -133,7 +133,7 @@ namespace PublisherPlus.Interface
             var l = new Listing_StandardPlus();
             l.Begin(rect);
             l.Gap();
-            l.Label(($"{Lang.Get("ContentDirectory")} ").Bold());
+            l.Label(Lang.Get("ContentDirectory").Bold());
             l.Label(_pack.SourceDirectory.FullName.Italic());
             l.GapLine();
             l.End();
@@ -142,11 +142,13 @@ namespace PublisherPlus.Interface
             var filterList = new Listing_StandardPlus();
             var filterRect = new Rect(rect.x, rect.y + l.CurHeight, rect.width, rect.height - l.CurHeight);
 
+            //Added general size values - Telefon
             var listingSize = (Text.LineHeight + filterList.verticalSpacing);
             var listingCount = _pack.AllContent.Count();
             var filterViewRect = new Rect(0f, 0f, rect.width - ScrollBarWidth, listingCount * listingSize);
 
             Widgets.BeginScrollView(filterRect, ref _scroll, filterViewRect);
+            //Adjusted the filterlist to always render depending on the scrollpos - Telefon
             filterList.Begin(new Rect(0, _scroll.y,  filterViewRect.width, filterRect.height));
 
             //Scroller Performance Fix - Telefonmast
