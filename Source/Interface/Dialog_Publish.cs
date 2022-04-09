@@ -133,26 +133,39 @@ namespace PublisherPlus.Interface
             var l = new Listing_StandardPlus();
             l.Begin(rect);
             l.Gap();
-            l.Label(Lang.Get("ContentDirectory").Bold());
+            l.Label(($"{Lang.Get("ContentDirectory")} ").Bold());
             l.Label(_pack.SourceDirectory.FullName.Italic());
             l.GapLine();
             l.End();
 
+
             var filterList = new Listing_StandardPlus();
             var filterRect = new Rect(rect.x, rect.y + l.CurHeight, rect.width, rect.height - l.CurHeight);
-            var filterViewRect = new Rect(0f, 0f, rect.width - ScrollBarWidth, _pack.AllContent.Count() * (Text.LineHeight + filterList.verticalSpacing));
+
+            var listingSize = (Text.LineHeight + filterList.verticalSpacing);
+            var listingCount = _pack.AllContent.Count();
+            var filterViewRect = new Rect(0f, 0f, rect.width - ScrollBarWidth, listingCount * listingSize);
 
             Widgets.BeginScrollView(filterRect, ref _scroll, filterViewRect);
-            filterList.Begin(filterViewRect);
+            filterList.Begin(new Rect(0, _scroll.y,  filterViewRect.width, filterRect.height));
 
-            foreach (var item in _pack.AllContent)
+            //Scroller Performance Fix - Telefonmast
+            var startIndex = (int)(_scroll.y / listingSize);
+            var indexRange = Math.Min((int)(filterRect.height / listingSize) + 1, listingCount);
+            var endIndex = startIndex + indexRange;
+
+            if (startIndex >= 0 && endIndex <= listingCount)
             {
-                var path = _pack.GetRelativePath(item);
-                var isDirectory = item is DirectoryInfo;
+                for (int i = startIndex; i < endIndex; i++)
+                {
+                    var item = _pack.AllContent.ElementAt(i);
+                    var path = _pack.GetRelativePath(item);
+                    var isDirectory = item is DirectoryInfo;
 
-                var isIncluded = _pack.IsIncluded(item);
-                var include = filterList.CheckboxLabeled(isDirectory ? path.Bold() + "\\" : path, isIncluded, item.FullName, isIncluded ? (Color?) null : Color.red);
-                if (include != isIncluded) { _pack.SetIncluded(item, include); }
+                    var isIncluded = _pack.IsIncluded(item);
+                    var include = filterList.CheckboxLabeled(isDirectory ? path.Bold() + "\\" : path, isIncluded, item.FullName, isIncluded ? (Color?)null : Color.red);
+                    if (include != isIncluded) { _pack.SetIncluded(item, include); }
+                }
             }
 
             filterList.End();
