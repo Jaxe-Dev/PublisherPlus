@@ -3,6 +3,6 @@ _*
 /*
 *.user
 *.pdb
-!/.gitignore
 !/README.md
 !/source/
+!/source2/
