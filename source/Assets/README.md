@@ -1,7 +1,7 @@
 # PublisherPlus
-![](https://img.shields.io/badge/Mod_Version-1.7-blue.svg)
-![](https://img.shields.io/badge/Built_for_RimWorld-1.3-blue.svg)
-![](https://img.shields.io/badge/Powered_by_Harmony-2.2-blue.svg)
+![](https://img.shields.io/badge/Mod_Version-{ReleaseVersion}-blue.svg)
+![](https://img.shields.io/badge/Built_for_RimWorld-{GameVersion}-blue.svg)
+![](https://img.shields.io/badge/Powered_by_Harmony-{HarmonyVersion}-blue.svg)
 
 [Link to Steam Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=1510554297)
 

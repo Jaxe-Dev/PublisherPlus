@@ -3,7 +3,7 @@
   <packageId>Jaxe.PublisherPlus</packageId>
   <name>PublisherPlus</name>
   <author>Jaxe</author>
-  <description>Provides extended options for publishing mods to the Steam Workshop.\n\nThis 'mod' has no effect on gameplay and should only be used by mod developers who intend to upload to the Steam platform.</description>
+  <description>Mod Version: {ReleaseVersion}\n\nProvides extended options for publishing mods to the Steam Workshop.\n\nThis 'mod' has no effect on gameplay and should only be used by mod developers who intend to upload to the Steam platform.</description>
   <supportedVersions>
     <li>1.1</li>
     <li>1.2</li>
