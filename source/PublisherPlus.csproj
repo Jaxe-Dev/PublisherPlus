@@ -78,7 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\_PublisherPlus.xml" />
-    <None Include="Assets\LICENSE" />
     <None Include="Assets\README.md" />
     <None Include="Assets\loadFolders.xml" />
     <None Include="Assets\About\About.xml" />
