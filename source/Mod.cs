@@ -1,4 +1,5 @@
 using HarmonyLib;
+using PublisherPlus.Compatibility;
 using Verse;
 
 namespace PublisherPlus
@@ -8,11 +9,17 @@ namespace PublisherPlus
   {
     public const string Id = "PublisherPlus";
     public const string Name = Id;
-    public const string Version = "1.7.1";
+    public const string Version = "1.8.0";
 
     public static bool ExperimentalMode { get; set; }
 
-    static Mod() => new Harmony(Id).PatchAll();
+    static Mod()
+    {
+      var harmony = new Harmony(Id);
+      harmony.PatchAll();
+
+      FluffyModManager.AddCompatibility(harmony);
+    }
 
     public static void Log(string message) => Verse.Log.Message(PrefixMessage(message));
     public static void Warning(string message) => Verse.Log.Warning(PrefixMessage(message));

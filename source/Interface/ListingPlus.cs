@@ -23,7 +23,7 @@ namespace PublisherPlus.Interface
           if (Mouse.IsOver(rect)) { Widgets.DrawHighlight(rect); }
           TooltipHandler.TipRegion(rect, tooltip);
         }
-        Widgets.CheckboxLabeled(rect, label, ref value);
+        Widgets.CheckboxLabeled(rect, label, ref check);
       }
       Gap(verticalSpacing);
 

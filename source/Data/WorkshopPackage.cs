@@ -142,7 +142,7 @@ namespace PublisherPlus.Data
     private IEnumerable<string> GetExcludedPaths()
     {
       var list = new List<string>();
-      foreach (var path in GetExcluded().Select(item => item.FullName).OrderBy(item => item))
+      foreach (var path in GetExcluded().Select(GetRelativePath).OrderBy(item => item))
       {
         if (list.Any(item => path.StartsWith(item))) { continue; }
         list.Add(path);

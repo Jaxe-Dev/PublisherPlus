@@ -5,8 +5,6 @@
   <author>Jaxe</author>
   <description>Mod Version: {ReleaseVersion}\n\nProvides extended options for publishing mods to the Steam Workshop.\n\nThis 'mod' has no effect on gameplay and should only be used by mod developers who intend to upload to the Steam platform.</description>
   <supportedVersions>
-    <li>1.1</li>
-    <li>1.2</li>
     <li>1.3</li>
   </supportedVersions>
   <modDependencies>
